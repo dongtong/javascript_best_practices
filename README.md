@@ -1,0 +1,2 @@
+# javascript_best_practices
+整理一些JavaScript最佳实践
