@@ -61,6 +61,39 @@
   		
   注: 这里主要注意||操作符前面表达式得出的结果是true还是false, true的话，执行短路操作，也就是碰到第一个表达式true的就返回。如果是&&的话，一直要判断到最后才能确定最终表达式的值。
   
+- switch语句使用
+
+  常规代码:
+  
+  		function findKindVal(kind){
+  		  if(kind == 'a') {
+  		    return 0;
+  		  } else if(kind == 'b') {
+  		    return 1;
+  		  } else if(kind == 'c') {
+  		  	return 2;
+  		  }...
+  		}
+  		
+  好的实践:
+  
+  		function findKindVal(kind) {
+  		  switch(kind) {
+  		  	case 'a':
+  		  	  return 0;
+  		  	case 'b':
+  		  	  return 1;
+  		  	case 'c':
+  		  	  return 2;
+  		  	case 'd':
+  		  	case 'e':
+  		  	  return 3;
+  		  	default:
+  		  	  return '-1';
+  		  }
+  		}
+  		
+  注: 这里是直接return了，如果不是的话，需要加上break中断条件判断。
 
  
 
