@@ -94,6 +94,35 @@
   		}
   		
   注: 这里是直接return了，如果不是的话，需要加上break中断条件判断。
+  
+- 优化循环
+
+  常规代码:
+  
+  		var tasks = {
+  		  numbers: [1,2,3,4,5,6,7,8,9]
+  		};
+  		
+  		for(var i = 0; i < tasks.numbers.length; i++) {
+  		  console.log(tasks.numbers[i]);
+  		}
+  		
+  好的实践:
+  
+  		var numbers = tasks.numbers,
+     		len = numbers.length;
+     		
+  		for(var i = 0; i < len; i++){
+  		  console.log(numbers[i])
+  		}
+  		
+  		//或者
+  		var i = len;
+  		while(i--){
+  		  console.log(numbers[len - (i + 1)]);
+  		}
+
+  注: 这里要访问i, numbers, length, 数组索引[i],效率会低一些，和0的比较效率是最高的。
 
  
 
