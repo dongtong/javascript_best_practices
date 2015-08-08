@@ -14,13 +14,11 @@
   		}  
   		
   		
-  最佳实践:
+  好的实践:
   
   		var active = authorized ? true : false;
   		
-  注:
-  
-  三目运算符始终会返回一个结果。条件判断，除了false, 0, undefined, NaN, "", null,其它的都为true。
+  注: 三目运算符始终会返回一个结果。条件判断，除了false, 0, undefined, NaN, "", null,其它的都为true。
   
   延伸:
   
@@ -40,5 +38,29 @@
   	    var c; 
   	    authorized ? (a = 1, b = 2) : authorized ? c = 3 : c = 0;
   
+  
+- 使用条件||和&&
+
+  常规代码:
+  
+  		var class = {
+  		  _addMember: function(member){
+  		    this.members = this.members ? this.members : [];
+  		    this.members.push(member);
+  		  }
+  		};
+  		
+  好的实践:
+  
+  		var class = {
+  		  _addMember: function(member){
+  		    this.members = this.members || [];
+  		    this.members.push(member);
+  		  }
+  		}
+  		
+  注: 这里主要注意||操作符前面表达式得出的结果是true还是false, true的话，执行短路操作，也就是碰到第一个表达式true的就返回。如果是&&的话，一直要判断到最后才能确定最终表达式的值。
+  
+
  
 
