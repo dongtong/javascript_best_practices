@@ -219,6 +219,24 @@
             b = 2,
           foo = 'bar';
           
+- 在循环外定义变量
+
+  JavaScript作用域是函数级别的，不是代码块，所以在循环块外定义变量，避免在循环内一次又一次定义变量。
+  
+  常规实践:
+  
+        for(var i = 0; i < 10; i++) {
+          var element = document.createElement('li');
+        }
+        
+  好的实践:
+  
+        var element;
+        for(var i = 0; i < 10; i++) {
+          element = document.createElement('li');
+        }
+
+       
 
 
   		  		  
