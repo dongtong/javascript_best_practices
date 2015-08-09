@@ -203,7 +203,23 @@
       
       list.appendChild(fragment);
       
-      
+- 减少var定义变量
+
+   每使用一个var定义变量都会给JavaScript解析器添加一条查找路径，可以使用,将多个变量定义使用一个var定义。
+   
+   常规实践:
+   
+   		var a = 1;
+   		var b = 2;
+   		var foo = 'bar';
+   		
+   好的实践:
+   
+        var a = 1,
+            b = 2,
+          foo = 'bar';
+          
+
 
   		  		  
 
