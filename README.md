@@ -93,7 +93,7 @@
   		  }
   		}
   		
-  注: 这里是直接return了，如果不是的话，需要加上break中断条件判断。
+  注: 这里是直接return了，如果不是的话，需要加上break中断条件判断。这里可以把一些命中率高的选项放在前面。
   
 - 优化循环
 
@@ -154,6 +154,28 @@
   		</head>
   		//...
   
+- 使用继承高效使用内存
+
+  使一类对象共有的方法都使用构造器原型。每个对象都共用方法，而各自特有的属性，在实例化之后可以自定义。
+
+  常规代码:
+  
+  		function ObjectA () {
+  		  this.methodA = function(){}
+  		  this.methodB = function(){}
+  		}
+  		
+  		var objecta = new ObjectA();
+  		
+  
+  好的实践:
+  
+  		ObjectA.prototype = {
+  		  methodA: function(){},
+  		  methodB: function(){}
+  		};
+  		
+
 
   		  		  
 
