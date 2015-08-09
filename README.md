@@ -237,7 +237,23 @@
         }
 
        
+- 使用join方法链接字符
 
+  如果链接字符数组，使用join方法
+  
+  常规实践:
+  
+        var strs = ['a', 'b', 'c'],
+            len = strs.length,
+            result = '';
+            
+        for(var i = 0; i < len; i++) {
+          result += strs[i];
+        }
+        
+  好的实践:
+  
+        var result = strs.join('')
 
   		  		  
 
