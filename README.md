@@ -175,7 +175,35 @@
   		  methodB: function(){}
   		};
   		
+- 使用createDocumentFragment添加DOM
 
+  页面添加DOM常规做法是获取页面DOM节点，然后添加新的DOM。每一次添加DOM都会刷新页面，消耗时间而且降低效率。使用createDocumentFragment方法将新节点添加到一个fragment state上，最后将fragment上的所有节点一次性添加到页面DOM上。
+  
+  
+  常规代码: 
+  
+      var list = document.getElementById('book_list');
+      for(var i = 0; i < 10; i++) {
+        var element = document.createElement('li');
+        element.appendChild(document.createTextNode('book_' + i));
+        list.appendChild(element);
+      }
+
+
+   好的实践:
+   
+      var list = document.getElementById('book_list');
+      var fragment = document.createDocumentFragment();
+      
+      for(var i = 0; i < 10; i++) {
+        var element = document.createElement('li');
+        element.appendChild(document.createTextNode('book_' + i));
+        fragment.appendChild(element);
+      }
+      
+      list.appendChild(fragment);
+      
+      
 
   		  		  
 
