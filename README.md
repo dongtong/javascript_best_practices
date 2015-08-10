@@ -254,6 +254,39 @@
   好的实践:
   
         var result = strs.join('')
+        
+- 使用console.time评估代码执行时间
+
+  语法:
+  
+        console.time(label);
+        console.timeEnd(label);
+
+  好的实践:
+  
+        var list = [1, 2, 3, 4],
+             len = list.length,
+             arr = [];
+        
+        console.time("Iterate the list...");
+        for(var i = 0; i < len; i++) {
+          arr.push(list[i]);
+        }
+        console.timeEnd("Iterate the list...");
+        
+  console.time可以嵌套
+  
+  		console.time("Total time ...");
+  		console.time("Part 1 need time...");
+  		//...
+  		console.timeEnd("Part 1 need time...");
+  		console.time("Part 2 need time...");
+  		//...
+  		console.timeEnd("Part 2 need time...");
+  		console.timeEnd("Total time ...");
+  		
+  注: 其中两个部分加起来的时间和不一定等于总的时间，因为浏览器解析器要预解析一些指令。
+
 
   		  		  
 
