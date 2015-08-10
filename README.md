@@ -285,7 +285,51 @@
   		console.timeEnd("Part 2 need time...");
   		console.timeEnd("Total time ...");
   		
-  注: 其中两个部分加起来的时间和不一定等于总的时间，因为浏览器解析器要预解析一些指令。
+  注: 其中两个部分加起来的时间和不一定等于总的时间，因为浏览器解析器要预解析一些指令。针对给出的时间，对代码进行优化。
+  
+- 精确获取执行时间
+
+	利用代码执行时间差，获取millseconds
+	
+		var before = +new Date();
+		var after = +new Date();
+		var elapsedTime = after - before;
+		console.log(elapsedTime)
+
+    好的实践:
+    
+    	function PerfTest(implement, params, times) {
+    	  this.implement = implement;
+    	  this.params = params;
+    	  this.times = times || 10000;
+    	  this.average = 0;    	  
+    	}
+    	
+    	PerfTest.prototype = {
+    	  run: function(){
+    	  	var beginAt, endAt, sumTime = 0;
+    	  	for(var i = 0, times = this.times; i < times; i++) {
+    	  	  beginAt = +new Date();
+    	  	  this.implement(this.params); //调用测试函数
+    	  	  endAt = +new Date();
+    	  	  sumTime += endAt - beginAt;
+    	  	}
+    	  	this.average = sumTime / this.times;
+    	  	return console.log("Average executated " + this.times + " times and time is : " + this.average );
+    	  }
+    	}
+    	
+    	var list = [1,2,3,4,5,6,7,8,9,10];
+    	var testFunc = function(list){
+    	  var arr = [];
+    	  for(var i = 0; i < list.length; i++) {
+    	    arr.push(list[i]);
+    	  }
+    	}
+    	
+    	var test = new PerfTest(testFunc, list);
+    	//var test = new PerfTest(testFunc, list, 100000); //指定执行次数
+    	test.run();
 
 
   		  		  
