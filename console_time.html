@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			function PerfTest(implement, params, times) {
+    	  this.implement = implement;
+    	  this.params = params;
+    	  this.times = times || 10000;
+    	  this.average = 0;    	  
+    	}
+    	
+    	PerfTest.prototype = {
+    	  run: function(){
+    	  	var beginAt, endAt, sumTime = 0;
+    	  	for(var i = 0, times = this.times; i < times; i++) {
+    	  	  beginAt = +new Date();
+    	  	  this.implement(this.params); //调用测试函数
+    	  	  endAt = +new Date();
+    	  	  sumTime += endAt - beginAt;
+    	  	}
+    	  	this.average = sumTime / this.times;
+    	  	return console.log("Average executated " + this.times + " times and time is : " + this.average );
+    	  }
+    	}
+    	
+    	var list = [1,2,3,4,5,6,7,8,9,10];
+    	var testFunc = function(list){
+    	  var arr = [],
+    	      len = list.length;
+    	      
+    	  for(var i = 0; i < len; i++) {
+    	    arr.push(list[i]);
+    	  }
+    	}
+    	
+    	var test = new PerfTest(testFunc, list, 100000);
+    	test.run();
+
+		</script>
+	</head>
+	<body>
+		console.time
+	</body>
+</html>

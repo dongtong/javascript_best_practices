@@ -330,6 +330,11 @@
     	var test = new PerfTest(testFunc, list);
     	//var test = new PerfTest(testFunc, list, 100000); //指定执行次数
     	test.run();
+    	
+- 使用比较操作符
+
+	
+
 
 
   		  		  
