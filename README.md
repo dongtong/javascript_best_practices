@@ -333,6 +333,113 @@
     	
 - 使用比较操作符
 
+好的实践: 使用 === 进行比较
+
+- JS文档化
+
+现在主流的JavaScript使用的模块模式，而CommonJS比较主流一些，当然也可以使用AMD或者UMD规范。
+
+如果使用CommonJS规范，可以使用jsdoc工具帮助我们生成可视化以及可读性更好的文档。
+
+        /**
+	* User module
+	* @module User
+	* @desc 用户模型
+	*/
+	'use strict';
+	
+	var Const = require('../common/const');
+	var Util = require('../common/util');
+	//...
+	
+	module.exports = {
+            /**
+	     * 获取用户详细信息
+	     *
+	     * @function showUser
+	     * @param {String} userId - 用户ID
+	     */
+            showUser: function () {
+                //...
+            }
+        };
+
+gulpfile.js内容如下:
+
+        {
+	  "name": "xxx",
+	  "version": "0.0.1",
+	  "description": "xxxx",
+	  "main": "app.js",
+	  "scripts": {
+	    "test": "jest",
+	    "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
+	  },
+	  "author": "dongtong",
+	  "license": "MIT",
+	  "devDependencies": {
+	    "browser-sync": "^2.11.0",
+	    "gulp": "^3.9.0",
+	    "gulp-autoprefixer": "^3.1.0",
+	    "gulp-base64": "^0.1.3",
+	    "gulp-concat": "^2.6.0",
+	    "gulp-cssnano": "^2.1.0",
+	    "gulp-html-minifier": "^0.1.8",
+	    "gulp-jscs": "^3.0.2",
+	    "gulp-jscs-stylish": "^1.3.0",
+	    "gulp-jshint": "^2.0.0",
+	    "gulp-minify-css": "^1.2.3",
+	    "gulp-notify": "^2.2.0",
+	    "gulp-plumber": "^1.0.1",
+	    "gulp-rename": "^1.2.2",
+	    "gulp-uglify": "^1.5.1",
+	    "jest-cli": "^0.8.2",
+	    "jsdoc": "^3.4.0",
+	    "jshint": "^2.8.0",
+	    "jshint-stylish": "^2.1.0",
+	    "minami": "^1.1.1",
+	    "vinyl-source-stream": "^1.1.0"
+	  },
+	  "dependencies": {
+	    "browserify": "^13.0.0",
+	    "glob": "^6.0.4",
+	    "vinyl-buffer": "^1.0.0"
+	  }
+	}
+
+.jsdoc.json内容如下:
+
+        {
+	    "tags": {
+	        "allowUnknownTags": true,
+	        "dictionaries": ["jsdoc"]
+	    },
+	    "source": {
+	        "include": ["src/js/modules/", "src/js/common/", "package.json"],
+	        "includePattern": ".js$",
+	        "excludePattern": "(node_modules/|docs)"
+	    },
+	    "plugins": [
+	        "plugins/markdown"
+	    ],
+	    "templates": {
+	        "cleverLinks": false,
+	        "monospaceLinks": true
+	    },
+	    "opts": {
+	        "destination": "./docs/",
+	        "encoding": "utf8",
+	        "private": true,
+	        "recurse": true,
+	        "template": "./node_modules/minami"
+	    }
+	}
+
+最后在gulp工程下(这里使用的是Gulp前端工作自动化流程)运行:
+   
+      npm run generate-docs
+      
+会在项目工程跟目录下面生成一个docs目录，打开里面的index.html文件即可预览文档。
 	
 
 
